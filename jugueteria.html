@@ -14,6 +14,34 @@
 </head>
 <body>
     <main id="app">
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
+            Launch
+          </button>
+          
+          <!-- Modal Body -->
+          <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+          <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <!-- <h4 class="modal-title" id="modalTitleId">{{producto.producto}}</h4> -->
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              
+                      </div>
+                      <div class="modal-body">
+                          <img src="producto.imagen" alt="imagen">
+                          <!-- <h6>{{producto.categoria}}</h6>
+                          <p>{{producto.descripcion}}</p>
+                          <p>{{producto.precio}}</p>
+                          <p>STOCK DISPONIBLE:{{producto.disponible}}</p> -->
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-info">Comprar</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
         <h1>Jugueteria</h1>
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
