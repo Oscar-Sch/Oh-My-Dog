@@ -11,16 +11,15 @@
 </head>
 <body>
     <div id="app">
-        <div class="card" v-if="" v-for="card of ...">
-            <img :src="card.imagen" class="card-img-top" :alt="card.producto">
+        <div class="card" v-if="articulosFiltrados" v-for="producto of articulosFiltrados">
+            <img :src="producto.imagen" class="card-img-top" :alt="card.producto">
             <div class="card-body">
-                <h5 class="card-title">{{card.producto}}</h5>
-                <p class="card-text">{{card.descripcion}}</p>
+                <h5 class="card-title">{{producto.producto}}</h5>
             </div>
             <div class="card-footer">
-                <small class="text-muted">${{card.precio}}</small>
-                <p>{{card.disponibles}}</p>
-                <a :href='"./events-card.html?id="+card._id' class="btn btn-success">View more..</a>
+                <small class="text-muted">${{producto.precio}}</small>
+                <p class="card-text">{{producto.disponibles}}</p>
+                <a :href='"./events-card.html?id="+producto._id' class="btn btn-success">Mas Info</a>
             </div>
         </div>
         <h3 v-if="">No se encuentran resultados en la busqueda</h3>
