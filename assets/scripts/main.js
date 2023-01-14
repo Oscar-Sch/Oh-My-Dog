@@ -18,6 +18,7 @@ createApp({
         .then(res=> res.json())
         .then(res=>{
             this.articulos=this.DetectarPagina(res);
+            console.log(this.articulos)
             this.articulosFiltrados=this.articulos;
             if(localStorage.getItem("Carrito")){
                 this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
@@ -29,12 +30,12 @@ createApp({
         DetectarPagina(datos){
             const titulo= document.querySelector("h1").innerText;
             if (titulo==="Farmacia"){
-                this.articulos=datos.filter(art=> art.categoria==="farmacia");
+                return datos.filter(art=> art.categoria==="farmacia");
             }else
             if(titulo==="Jugueteria"){
-                this.articulos=datos.filter(art=> art.categoria==="jugueteria");
+                return datos.filter(art=> art.categoria==="jugueteria");
             }else{
-                this.articulos=datos;
+                return datos;
             }
         },
         FiltrarBusqueda(){
