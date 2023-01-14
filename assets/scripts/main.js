@@ -19,6 +19,9 @@ createApp({
         .then(res=>{
             this.articulos=this.DetectarPagina(res);
             this.articulosFiltrados=this.articulos;
+            if(localStorage.getItem("Carrito")){
+                this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
+            }
         })
         .catch(err=> this.errorCarga=true);
     },
@@ -37,6 +40,24 @@ createApp({
         FiltrarBusqueda(){
             this.articulosFiltrados= this.articulos.filter(art=> art.producto.toLowerCase().includes(this.valorBusqueda.toLowerCase()));
 
+        },
+        AgregarAlCarrito(arti){
+            let index= this.listaCarrito.findIndex(prod.producto===arti.producto);
+            if (index<0){
+                arti.enCarrito=1;
+                this.listaCarrito.push(arti);
+            }else{
+                this.listaCarrito[index].enCarrito++;
+            }
+            localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
+        },
+        RestarAlCarrito(arti){
+            let index= this.listaCarrito.findIndex(prod.producto===arti.producto);
+            this.listaCarrito[index].enCarrito--;
+            if(this.listaCarrito[index].enCarrito<=0){
+                this.listaCarrito.splice(index,1);
+            }
+            localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
         },
         OrdenarCartas(){
             if(this.valorSelector==="a-z"){
