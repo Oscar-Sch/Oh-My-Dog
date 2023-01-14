@@ -18,13 +18,13 @@ createApp({
         .then(res=> res.json())
         .then(res=>{
             this.articulos=this.DetectarPagina(res);
-            console.log(this.articulos)
             this.articulosFiltrados=this.articulos;
             if(localStorage.getItem("Carrito")){
                 this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
             }
+            // console.log(this.listaCarrito)
         })
-        .catch(err=> this.errorCarga=true);
+        // .catch(err=> this.errorCarga=true);
     },
     methods:{
         DetectarPagina(datos){
@@ -43,7 +43,7 @@ createApp({
 
         },
         AgregarAlCarrito(arti){
-            let index= this.listaCarrito.findIndex(prod.producto===arti.producto);
+            let index= this.listaCarrito.findIndex(prod=>prod.producto===arti.producto);
             if (index<0){
                 arti.enCarrito=1;
                 this.listaCarrito.push(arti);
@@ -51,6 +51,7 @@ createApp({
                 this.listaCarrito[index].enCarrito++;
             }
             localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
+            console.log(JSON.parse(localStorage.getItem("Carrito")))
         },
         RestarAlCarrito(arti){
             let index= this.listaCarrito.findIndex(prod.producto===arti.producto);
