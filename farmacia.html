@@ -50,19 +50,23 @@
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
         <template v-else-if="articulosFiltrados">
-        <div class="card" v-for="producto of articulosFiltrados">
-            <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
-            <div class="card-body">
-                <h5 class="card-title">{{producto.producto}}</h5>
+            <div class="cards-container row">
+                <div class="card col-4"v-for="producto of articulosFiltrados">
+                    <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
+                    <div class="card-body">
+                        <h5 class="card-title">{{producto.producto}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">${{producto.precio}}</small>
+                        <p class="card-text">{{producto.disponibles}}</p>
+                        <a :href='"./events-card.html?id="+producto._id' class="btn btn-success">Mas Info</a>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">
-                <small class="text-muted">${{producto.precio}}</small>
-                <p class="card-text">{{producto.disponibles}}</p>
-                <a href="#" class="btn btn-success">Mas Info</a>
-            </div>
-        </div>
         </template>
-        <!-- <h3 v-else>No se encuentran resultados en la busqueda</h3> -->
+        <template v-else>
+            <h2>No se encontraron resultados</h2>
+        </template>
     </main>
 </body>
 </html>
