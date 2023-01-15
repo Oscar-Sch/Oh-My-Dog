@@ -7,8 +7,7 @@
     <link rel="shortcut icon" href="./assets/imagenes/logo_oh_my_dogs.jpg" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/styles/style.css">
-    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script defer src="./assets/scripts/main.js"></script>
     <title>Oh my Dog! | Farmacia</title>
@@ -60,8 +59,37 @@
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">${{producto.precio}}</small>
-                        <p class="card-text">{{producto.disponibles}}</p>
-                        <a :href='"./events-card.html?id="+producto._id' class="btn btn-success">Mas Info</a>
+                        <template v-if="producto.disponibles===0 ||
+                        (producto.disponibles-producto.enCarrito)<=0">
+                            <p>Sin Stock!</p>
+                        </template>
+                        <template v-else>
+                            <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
+                        </template>
+                        <div class="card-buttons-container">
+                            <a href="#" class="btn btn-success">Mas Info</a>
+                            <template v-if="producto.disponibles===0">
+                                <button disabled class="btn btn-primary">
+                                    Compar
+                                </button>
+                            </template>
+                            <template v-else-if="producto.enCarrito>0">
+                                <button @click="RestarAlCarrito(producto)">-</button>
+                                <span>{{producto.enCarrito}}</span>
+                                <template v-if="producto.disponibles>producto.enCarrito">
+                                    <button @click="AgregarAlCarrito(producto)">+</button>
+                                </template>
+                                <template v-else>
+                                    <button disabled>+</button>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <button @click="AgregarAlCarrito(producto)"
+                                class="btn btn-primary">
+                                    Comprar
+                                </button>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,5 +98,6 @@
             <h2>No se encontraron resultados</h2>
         </template>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

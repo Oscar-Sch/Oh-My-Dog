@@ -59,8 +59,37 @@
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">${{producto.precio}}</small>
-                        <p class="card-text">{{producto.disponibles}}</p>
-                        <a :href='"./events-card.html?id="+producto._id' class="btn btn-success">Mas Info</a>
+                        <template v-if="producto.disponibles===0 ||
+                        (producto.disponibles-producto.enCarrito)<=0">
+                            <p>Sin Stock!</p>
+                        </template>
+                        <template v-else>
+                            <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
+                        </template>
+                        <div class="card-buttons-container">
+                            <a href="#" class="btn btn-success">Mas Info</a>
+                            <template v-if="producto.disponibles===0">
+                                <button disabled class="btn btn-primary">
+                                    Compar
+                                </button>
+                            </template>
+                            <template v-else-if="producto.enCarrito>0">
+                                <button @click="RestarAlCarrito(producto)">-</button>
+                                <span>{{producto.enCarrito}}</span>
+                                <template v-if="producto.disponibles>producto.enCarrito">
+                                    <button @click="AgregarAlCarrito(producto)">+</button>
+                                </template>
+                                <template v-else>
+                                    <button disabled>+</button>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <button @click="AgregarAlCarrito(producto)"
+                                class="btn btn-primary">
+                                    Comprar
+                                </button>
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>

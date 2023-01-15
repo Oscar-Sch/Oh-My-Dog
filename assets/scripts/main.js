@@ -21,8 +21,10 @@ createApp({
             this.articulosFiltrados=this.articulos;
             if(localStorage.getItem("Carrito")){
                 this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
+                this.articulosFiltrados= this.ActualizarEstadoCarrito();
+                console.log(this.articulosFiltrados)
             }
-            // console.log(this.listaCarrito)
+            console.log(this.listaCarrito)
         })
         // .catch(err=> this.errorCarga=true);
     },
@@ -38,6 +40,15 @@ createApp({
                 return datos;
             }
         },
+        ActualizarEstadoCarrito(){
+            return this.articulos.map(arti=>{
+                let index= this.listaCarrito.findIndex(prod=>prod.producto===arti.producto);
+                if(index>=0){
+                    arti.enCarrito=this.listaCarrito[index].enCarrito;
+                }
+                return arti;
+            })
+        },
         FiltrarBusqueda(){
             this.articulosFiltrados= this.articulos.filter(art=> art.producto.toLowerCase().includes(this.valorBusqueda.toLowerCase()));
 
@@ -45,21 +56,27 @@ createApp({
         AgregarAlCarrito(arti){
             let index= this.listaCarrito.findIndex(prod=>prod.producto===arti.producto);
             if (index<0){
+                console.log("pusheado")
                 arti.enCarrito=1;
                 this.listaCarrito.push(arti);
             }else{
+                console.log("agregado")
                 this.listaCarrito[index].enCarrito++;
             }
             localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
+            this.articulosFiltrados=this.ActualizarEstadoCarrito();
             console.log(JSON.parse(localStorage.getItem("Carrito")))
         },
         RestarAlCarrito(arti){
-            let index= this.listaCarrito.findIndex(prod.producto===arti.producto);
+            let index= this.listaCarrito.findIndex(prod=>prod.producto===arti.producto);
             this.listaCarrito[index].enCarrito--;
+            this.articulosFiltrados=this.ActualizarEstadoCarrito();
             if(this.listaCarrito[index].enCarrito<=0){
                 this.listaCarrito.splice(index,1);
             }
             localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
+            this.articulosFiltrados=this.ActualizarEstadoCarrito();
+            console.log(JSON.parse(localStorage.getItem("Carrito")))
         },
         OrdenarCartas(){
             if(this.valorSelector==="a-z"){
