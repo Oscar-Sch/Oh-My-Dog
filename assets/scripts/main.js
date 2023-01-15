@@ -11,6 +11,7 @@ createApp({
             valorBusqueda:"",
             valorSelector:"",
             listaCarrito:[],
+            productoDetalles:null,
         }
     },
     created(){
@@ -24,6 +25,7 @@ createApp({
                 this.articulosFiltrados= this.ActualizarEstadoCarrito();
                 console.log(this.articulosFiltrados)
             }
+            this.productoDetalles=this.articulos[0];
             console.log(this.listaCarrito)
         })
         // .catch(err=> this.errorCarga=true);
@@ -77,6 +79,10 @@ createApp({
             localStorage.setItem("Carrito", JSON.stringify(this.listaCarrito));
             this.articulosFiltrados=this.ActualizarEstadoCarrito();
             console.log(JSON.parse(localStorage.getItem("Carrito")))
+        },
+        ManejarDetalles(prod){
+            this.productoDetalles=prod;
+            console.log(this.productoDetalles)
         },
         OrdenarCartas(){
             if(this.valorSelector==="a-z"){

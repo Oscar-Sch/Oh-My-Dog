@@ -88,7 +88,9 @@
                             <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
                         </template>
                         <div class="card-buttons-container">
-                            <a href="#" class="btn btn-success">Mas Info</a>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalId" @click="ManejarDetalles(producto)">
+                                Ver mas
+                            </button>
                             <template v-if="producto.disponibles===0">
                                 <button disabled class="btn btn-primary">
                                     Compar
@@ -118,6 +120,63 @@
         <template v-else>
             <h2>No se encontraron resultados</h2>
         </template>
+
+        <!-- ---------------------------MODAL----------------------- -->
+        
+        <div v-if="productoDetalles" class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-between">
+                        <h4 class="modal-title" id="modalTitleId">{{productoDetalles.producto}}</h4>
+                            <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"></button>
+                            
+                    </div>
+                    <div class="modal-body">
+                        <img :src="productoDetalles.imagen" alt="imagen">
+                        <h6>{{productoDetalles.categoria}}</h6>
+                        <p>{{productoDetalles.descripcion}}</p>
+                        <!-- <p>{{productoDetalles.precio}}</p>
+                        <p>STOCK DISPONIBLE:{{productoDetalles.disponibles}}</p> -->
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between">
+                        <div class="d-flex gap-2 align-items-center">
+                            <span class="card-text">${{productoDetalles.precio}}</span>
+                            <template v-if="productoDetalles.disponibles===0 ||
+                            (productoDetalles.disponibles-productoDetalles.enCarrito)<=0">
+                                <span>Sin Stock!</span>
+                            </template>
+                            <template v-else>
+                                <span>Disponibles: </span>
+                                <p class="card-text">{{productoDetalles.enCarrito?productoDetalles.disponibles-productoDetalles.enCarrito:productoDetalles.disponibles}}</p>
+                            </template>
+                        </div>
+                        <div class="card-buttons-container">
+                            <template v-if="productoDetalles.disponibles===0">
+                                <button disabled class="btn btn-primary">
+                                    Compar
+                                </button>
+                            </template>
+                            <template v-else-if="productoDetalles.enCarrito>0">
+                                <button @click="RestarAlCarrito(productoDetalles)">-</button>
+                                <span>{{productoDetalles.enCarrito}}</span>
+                                <template v-if="productoDetalles.disponibles>productoDetalles.enCarrito">
+                                    <button @click="AgregarAlCarrito(productoDetalles)">+</button>
+                                </template>
+                                <template v-else>
+                                    <button disabled>+</button>
+                                </template>
+                            </template>
+                            <template v-else>
+                                <button @click="AgregarAlCarrito(productoDetalles)"
+                                class="btn btn-primary">
+                                    Comprar
+                                </button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
