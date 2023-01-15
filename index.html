@@ -48,6 +48,29 @@
 </header>
 <main id="app">
     <h1>Inicio</h1>
+    <div class="container" v-show="articulosFiltrados">
+        <div class="row col-sm-12" >
+            <div id="carouselExampleSlidesOnly" class="carousel slide carousel-tamaño" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="https://www.google.com" target="_blank"><img src="./assets/imagenes/aviso.jpg" class="d-block w-100" alt="aviso de comida de perro"></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://www.google.com" target="_blank"><img src="./assets/imagenes/descuento.png" class="d-block w-100" alt="..."></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://www.google.com" target="_blank"><img src="./assets/imagenes/envios.jpg" class="d-block w-100" alt="..."></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="https://www.google.com" target="_blank"><img src="./assets/imagenes/local.jpg" class="d-block w-100" alt="..."></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template v-if="!articulosFiltrados">
+        <img src="./assets/imagenes/loader.gif" alt="">
+    </template>
 </main>
 </body>
 </html>
