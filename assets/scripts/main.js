@@ -12,6 +12,10 @@ createApp({
             valorSelector:"",
             listaCarrito:[],
             productoDetalles:null,
+            totalCarrito:0,
+            envio:"",
+            cuotas:"",
+            metodoPago:"",
         }
     },
     created(){
@@ -83,6 +87,25 @@ createApp({
         ManejarDetalles(prod){
             this.productoDetalles=prod;
             console.log(this.productoDetalles)
+        },
+        TotalCarrito(){
+            this.totalCarrito=this.listaCarrito.reduce((acu,elem)=>{
+                return (acu + (elem.enCarrito*elem.precio));
+            },0)
+        },
+        ManejarPago(){
+            switch (this.cuotas) {
+                case "1": return (this.totalCarrito +
+                    (this.envio==="domicilio"?500:0));
+                case "3": return (this.totalCarrito +
+                    (this.envio==="domicilio"?500:0))*1.3;
+                case "6": return (this.totalCarrito +
+                    (this.envio==="domicilio"?500:0))*2;
+                case "12": return (this.totalCarrito +
+                    (this.envio==="domicilio"?500:0))*2.5;
+                default: return (this.totalCarrito +
+                    (this.envio==="domicilio"?500:0));
+            }
         },
         OrdenarCartas(){
             if(this.valorSelector==="a-z"){
