@@ -18,7 +18,15 @@
         <!--Barra de Busqueda-->
         <form  class="search" role="search">
             <input v-model="FiltrarBusqueda" @keyup="valorBusqueda" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
-          </form>
+            <!-- Pendiente v-model @evento -->
+            <label>Ordenar Por:</label>
+                <select id="ordenarPor" name="ordenarPor">
+                    <option value="a-z">Orden alfabetico: A - Z</option>
+                    <option value="z-a">Orden alfabetico: Z - A</option>
+                    <option value="men-may">Menor Precio</option>
+                    <option value="may-men">Mayor Precio</option>
+                </select>
+        </form>
         <!-- Aca termina la barra de busqueda-->
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
