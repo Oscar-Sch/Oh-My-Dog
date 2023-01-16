@@ -15,6 +15,11 @@
 <body>
     <main id="app">
         <h1>Jugueteria</h1>
+         <!--Barra de Busqueda-->
+         <form  class="search" role="search">
+            <input v-model="FiltrarBusqueda" @keyup="valorBusqueda" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+          </form>
+        <!-- Aca termina la barra de busqueda-->
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
