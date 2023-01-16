@@ -5,8 +5,6 @@ createApp({
         return {
             articulos:null,
             articulosFiltrados:null,
-            // articulosFarmacia:null,
-            // articulosJugueteria:null,
             errorCarga:false,
             valorBusqueda:"",
             valorSelector:"",
@@ -153,5 +151,12 @@ createApp({
                 })
             }
         }
+    },
+    computed:{
+        TotalArticulos(){
+            return this.listaCarrito.reduce((acu,elem)=>{
+                return (acu + (elem.enCarrito));
+            },0)
+        },
     }
 }).mount('#app')

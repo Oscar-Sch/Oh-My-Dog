@@ -14,6 +14,10 @@ main{
 
 nav {
     min-height: 10vh;
+    
+}
+.intern-nav{
+    position: relative;
 }
 .navbar-nav {
     align-items:center;
@@ -42,4 +46,8 @@ nav {
     height: 10em;
     object-fit: contain;
     object-position: center;
+}
+.carrito{
+    position: absolute;
+    right: 50px;
 }
