@@ -202,48 +202,45 @@
             </div>
         </div>
     </div>
-    <template v-if="!articulosFiltrados">
-        <img src="./assets/imagenes/loader.gif" alt="">
-    </template>
-    <template v-else>
-        <div class="card mb-3 mt-5 d-flex justify-content-center flex-wrap col-lg-9">
-            <div class="row g-0 d-flex">
-                <div class="col-md-6">
-                    <img src="./assets/imagenes/shiro.jpg" alt="Shiro" class="img-fluid rounded-start">
-                </div>
-            <div class="col-md-6">
-                <div class="card-body">
-                    <h4 class="card-title my-5">Acerca de nosotros</h5>
-                    <p class="card-text">Somos una compañía que nació a partir de una firme creencia: Nuestras mascotas merecen una vida plena. 
-                    Nuestra misión es dar a todos los dueños que entren por nuestras puertas
-                    las herramientas necesarias para cuidar de sus mascotas plenamente, manteniendo por ellos y para ellos un estandar de 
-                    calidad de vida lo suficientemente alto como para vivir un vida feliz.
-                    </h5>
-                </div>
-                </div>
-            </div>
+
+
+    <div class="cardHome">
+        <div class="title_img">
+            <img class="home_img"
+             src='./assets/imagenes/shiro.jpg' alt="">
+             <div class="title_home"><h2>Acerca de nosotros</h2></div>
         </div>
-        <div class="card mb-3 mt-5 d-flex justify-content-center flex-wrap col-lg-9">
-            <div class="row g-0 d-flex flex-wrap-reverse">
-                <div class="col-md-6">
-                    <div class="card-body">
-                        <h4 class="card-title my-5">Lo que podemos hacer por tí</h5>
-                        <p class="card-text my-5">Nuestros profesionales en cuidado farmacéutico veterinario se encuentran disponibles en nuestros horarios de atención para prestar la ayuda necesaria a la hora de atender las necesidades del peludo de la familia. Y si todo se encuentra en orden, ¿Por qué no recompensar a tu amiguito/a por su buen comportamiento y comprarle algo para que se divierta en todo momento? Nuestra selección de juguetes para mascotas te permite darle a tu compañero/a los elementos que necesita para llevar la diversión a un nuevo nivel.
-                        </p>
-                        <h5>¿Qué esperas entonces? Ven a conocernos</h5>
-                    </div>   
-                </div>
-                <div class="col-md-6">
-                <img src="./assets/imagenes/señor.jpeg" alt="bulldog" class="img-fluid rounded-start">
-                </div>
-            </div>
+        <h2 class="title_mobile">Acerca de nosotros</h2>
+        <div class="text_home">    
+            <p>Somos una compañía que nació a partir de una firme creencia: Nuestras mascotas merecen una vida plena. 
+                Nuestra misión es dar a todos los dueños que entren por nuestras puertas
+                las herramientas necesarias para cuidar de sus mascotas plenamente, manteniendo por ellos y para ellos un estandar de 
+                calidad de vida lo suficientemente alto como para vivir un vida feliz.</p>
         </div>
-        <div>
-            <a href=""><button type="button" class="btn btn-primary btn-lg my-5">Lleva el juego al siguiente nivel</button></a>
-            <a href=""><button type="button" class="btn btn-primary btn-lg my-5">Para mantenerte al dia con sus cuidados</button></a>   
+        <div class="link_toys">
+            <h5>Conocé nuestros productos</h5>
+            <a href="/Oh-My-Dog/farmacia.html" class="btn b-rojo">INFO</a>
         </div>
-    </template>
+    </div>
+
+    <div class="cardHome">
+        <div class="title_img">
+            <img class="home_img"
+             src='./assets/imagenes/dog2.jpg' alt="bulldog">
+             <div class="title_home"><h2>¡Vení a jugar!</h2></div>
+        </div>
+        <h2 class="title_mobile">¡Vení a jugar!</h2>
+        <div class="text_home">    
+            <p>Nuestros profesionales en cuidado farmacéutico veterinario se encuentran disponibles en nuestros horarios de atención para prestar la ayuda necesaria a la hora de atender las necesidades del peludo de la familia. Y si todo se encuentra en orden, ¿Por qué no recompensar a tu amiguito/a por su buen comportamiento y comprarle algo para que se divierta en todo momento? Nuestra selección de juguetes para mascotas te permite darle a tu compañero/a los elementos que necesita para llevar la diversión a un nuevo nivel.</p>
+        </div>
+        <div class="link_toys">
+            <h5>Conocé nuestros jueguetes</h5>
+            <a href="/Oh-My-Dog/jugueteria.html" class="btn b-rojo">JUGAR</a>
+        </div>
+    </div>
+
 </main>
+
 <footer>
     <div class="p">
         <p>Teléfono:</p>
