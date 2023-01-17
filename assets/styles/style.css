@@ -427,3 +427,12 @@ form textarea{
 .divdelformulario{
     min-width: 20vw;
 }
+
+.list-group{
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: white;
+}
+.list-group *{
+    list-style: none;
+}
