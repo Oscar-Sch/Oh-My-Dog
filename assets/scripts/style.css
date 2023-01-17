@@ -45,32 +45,30 @@ main h1{
 /* clases del footer */
 footer {
     display: flex;
-    justify-content: space-between;
-    height: 10vh;
-    align-items: center;
-    padding-right: 1rem;
+    flex-direction: column;
+    min-height: 15vh;
     flex-wrap: wrap;
+    background-color: #FFEBB7;
+}
+.footer {
+    justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    flex-wrap: wrap;
+}
+footer h6{
+    font-size: 15px;
 }
 
-.imgs {
-    display: flex;        
-    justify-content: flex-start;
-    flex-wrap: wrap;
-}
-.inst, .face, .what {
-    display: flex;
-    justify-content: center;
-    padding-left: 1rem;
-    height: 2rem;
-}
-.p {
+/* .p {
     display: flex;
     justify-content: center;
     text-align: center;
-    font-size: 20px;
-    padding-right: 5px;
     flex-wrap: wrap;
-}
+    width: 3rem;
+    color: black;
+} */
 /* -----------carrusel------------*/
 
 .carousel-inner img {
@@ -115,3 +113,5 @@ form {display: flex;}
 .divdelformulario{
     min-width: 20vw;
 }
+
+
