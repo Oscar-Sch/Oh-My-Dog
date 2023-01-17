@@ -30,17 +30,17 @@
                         <a class="nav-link b-letranav" href="./index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link b-letranav active" aria-current="page" href="./#">Farmacia</a>
+                        <a class="nav-link b-letranav active" aria-current="page" href="#">Farmacia</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link b-letranav"  href="./jugueteria.html">Jugueteria</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./cuidados.html">Cuidados</a>
+                    </li> 
+                    <li class="nav-item">
                         <a class="nav-link b-letranav" href="./contacto.html">Contacto</a>
                     </li>  
-                    <li class="nav-item">
-                        <a class="nav-link b-letranav" href="./manualCuidado.html">Manual de Cuidado</a>
-                    </li> 
                 </ul>   
             </div>
             <div class="carrito">
@@ -54,7 +54,8 @@
 </header>
     <main>
         <h1>Farmacia</h1>
-        <div class="container d-flex justify-content-center align-items-center carousel-container" v-show="articulosFiltrados">
+        <!-- <div class="container d-flex justify-content-center align-items-center carousel-container" v-show="true"> -->
+        <div class="container car-container" v-show="articulosFiltrados">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -72,68 +73,76 @@
                 </div>
             </div>
         </div>
-
+        </div>
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
         <template v-else-if="articulosFiltrados">
-            <!--Barra de Busqueda-->
+        <div class="store-container">
+                <!--Barra de Busqueda-->
         <form  class="search" role="search">
-            <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+            <div class="searchbar">
+                <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+            </div>
             <!-- Pendiente v-model @evento -->
-            <label>Ordenar Por:</label>
-                <select v-model="valorSelector" @change="OrdenarCartas()" id="ordenarPor" name="ordenarPor">
-                    <option value="a-z">Orden alfabetico: A - Z</option>
-                    <option value="z-a">Orden alfabetico: Z - A</option>
-                    <option value="men-may">Menor Precio</option>
-                    <option value="may-men">Mayor Precio</option>
-                </select>
+            <div>
+                <label class="search_label">Ordenar Por:</label>
+                    <select v-model="valorSelector" @change="OrdenarCartas()" id="ordenarPor" name="ordenarPor">
+                        <option value="a-z">Orden alfabetico: A - Z</option>
+                        <option value="z-a">Orden alfabetico: Z - A</option>
+                        <option value="men-may">Menor Precio</option>
+                        <option value="may-men">Mayor Precio</option>
+                    </select>
+            </div>
         </form>
-        <div class="cards-container row d-flex justify-content-around gap-3">
-            <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of articulosFiltrados">
-                <div class="img_container">   
-                    <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{producto.producto}}</h5>
-                </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-around">
-                        <span class="text-muted">Precio: ${{producto.precio}}</span>
-                        <template v-if="producto.disponibles===0 ||
-                        (producto.disponibles-producto.enCarrito)<=0">
-                            <span class="stock">Sin Stock!</span>
-                        </template>
-                        <template v-else>
-                            <span class="card-text">
-                            Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
-                        </template>
+            <div class="cards-container row d-flex justify-content-around gap-2">
+                <div class="card" v-for="producto of articulosFiltrados">
+                    <div class="img_container">   
+                        <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
                     </div>
-                    <div class="card-buttons-container d-flex justify-content-around">
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                            data-bs-target="#modalId" @click="ManejarDetalles(producto)">
-                            Ver mas
-                        </button>
-                        <template v-if="producto.disponibles===0">
-                            <button disabled class="btn btn-danger">
-                                s/Stock
+                    <div class="card-body">
+                        <h5 class="card-title">{{producto.producto}}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex flex-column justify-content-around gap-1 mb-2">
+                            <div class="d-flex justify-content-around stock_price">
+                                <span class="text-muted">Precio: ${{producto.precio}}</span>
+                                <template v-if="producto.disponibles===0 ||
+                                (producto.disponibles-producto.enCarrito)<=0">
+                                    <span class="stock">Sin Stock!</span>
+                                </template>
+                                <template v-else>
+                                    <span class="card-text">
+                                    Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="card-buttons-container d-flex justify-content-around">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#modalId" @click="ManejarDetalles(producto)">
+                                Ver mas
                             </button>
-                        </template>
-                        <template v-else-if="producto.enCarrito>0">
-                            <button @click="RestarAlCarrito(producto)">-</button>
-                            <span>{{producto.enCarrito}}</span>
-                            <template v-if="producto.disponibles>producto.enCarrito">
-                                <button @click="AgregarAlCarrito(producto)">+</button>
+                            <template v-if="producto.disponibles===0">
+                                <button disabled class="btn btn-danger">
+                                    s/Stock
+                                </button>
+                            </template>
+                            <template v-else-if="producto.enCarrito>0">
+                                <button @click="RestarAlCarrito(producto)">-</button>
+                                <span>{{producto.enCarrito}}</span>
+                                <template v-if="producto.disponibles>producto.enCarrito">
+                                    <button @click="AgregarAlCarrito(producto)">+</button>
+                                </template>
+                                <template v-else>
+                                    <button disabled>+</button>
+                                </template>
                             </template>
                             <template v-else>
-                                <button disabled>+</button>
+                                <button @click="AgregarAlCarrito(producto)" class="btn b-rojo">
+                                    Comprar
+                                </button>
                             </template>
-                        </template>
-                        <template v-else>
-                            <button @click="AgregarAlCarrito(producto)" class="btn b-rojo">
-                                Comprar
-                            </button>
-                        </template>
+                        </div>
                     </div>
                 </div>
             </div>
