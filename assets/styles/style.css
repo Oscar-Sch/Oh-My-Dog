@@ -248,6 +248,7 @@ nav {
 .card-buttons-container{
     display: flex;
     justify-content: flex-start;
+    margin-top: 1rem;
 }
 
 
@@ -286,6 +287,13 @@ nav {
 .card-footer{
     width: 100%;
     background-color: #FFEBB7;
+    font-size: small;
+}
+
+.stock_price{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 /* .card-text{
@@ -435,4 +443,20 @@ form textarea{
 }
 .list-group *{
     list-style: none;
+}
+.search{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.search_label{
+    font-size: small;
+    margin-right: 10px;
+}
+
+.searchbar{
+    width: 50%;
 }

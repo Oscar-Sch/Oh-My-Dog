@@ -79,15 +79,19 @@
         <template v-else-if="articulosFiltrados">
             <!--Barra de Busqueda-->
         <form  class="search" role="search">
-            <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+            <div class="searchbar">
+                <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+            </div>
             <!-- Pendiente v-model @evento -->
-            <label>Ordenar Por:</label>
-                <select v-model="valorSelector" @change="OrdenarCartas()" id="ordenarPor" name="ordenarPor">
-                    <option value="a-z">Orden alfabetico: A - Z</option>
-                    <option value="z-a">Orden alfabetico: Z - A</option>
-                    <option value="men-may">Menor Precio</option>
-                    <option value="may-men">Mayor Precio</option>
-                </select>
+            <div>
+                <label class="search_label">Ordenar Por:</label>
+                    <select v-model="valorSelector" @change="OrdenarCartas()" id="ordenarPor" name="ordenarPor">
+                        <option value="a-z">Orden alfabetico: A - Z</option>
+                        <option value="z-a">Orden alfabetico: Z - A</option>
+                        <option value="men-may">Menor Precio</option>
+                        <option value="may-men">Mayor Precio</option>
+                    </select>
+            </div>
         </form>
         <div class="cards-container row d-flex justify-content-around gap-3">
             <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of articulosFiltrados">
@@ -98,7 +102,7 @@
                     <h5 class="card-title">{{producto.producto}}</h5>
                 </div>
                 <div class="card-footer">
-                    <div class="d-flex justify-content-around">
+                    <div class="d-flex justify-content-around stock_price">
                         <span class="text-muted">Precio: ${{producto.precio}}</span>
                         <template v-if="producto.disponibles===0 ||
                         (producto.disponibles-producto.enCarrito)<=0">
