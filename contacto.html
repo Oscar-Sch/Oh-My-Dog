@@ -51,7 +51,7 @@
 </header>
 <main>
     <h1>Contactanos</h1>
-    <form action="" class="d-flex flex-column">
+    <!-- <form action="" class="d-flex flex-column">
         <label>
             Nombre:
             <input type="text" name="Nombre" id=""> 
@@ -70,10 +70,34 @@
                 Mensaje....
             </textarea name="Mensaje"> 
         </label>
-        <!-- Ojo, se le deben dar estilos al boton, al igual que tamano  -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Enviar
           </button>
+        </form> -->
+        <form class="form-contact">
+            <div class="divdelformulario">
+                <div class="mb-2 d-flex  flex-column">
+                    <label for="exampleFormControlInput1" class="form-label">Nombre completo:</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="name" required>
+                </div>
+                <div class="mb-2 d-flex  flex-column">
+                    <label for="exampleFormControlInput2" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="email@gmail.com" required>
+                </div>
+                <div class="mb-2 d-flex  flex-column">
+                    <label for="exampleFormControlInput2" class="form-label">Teléfono:</label>
+                    <input type="telefono" class="form-control" id="exampleFormControlInput2" placeholder="+540009999" required>
+                </div>
+                <div class="mb-3 d-flex  flex-column">
+                    <label for="exampleFormControlTextarea3" class="form-label">Mensaje:</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea3" rows="3" required></textarea>
+                </div>
+                <div class="contact-form">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Enviar
+                    </button>
+                </div>
+            </div>
         </form>
           <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -88,7 +112,7 @@
              
             </h1>
         
-            <table border="2">
+            <table>
                 <tr>
                     <th>Form Field</th>
                     <th>Field Value</th>
@@ -109,16 +133,27 @@
                 </script>
         
             </table>
-        
+            </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
-  </main>
-    
+</main>
+<footer>
+    <div class="p">
+        <p>Teléfono:</p>
+    </div>
+    <div class="p">
+        <p>E-mail:</p>
+    </div>
+    <div class="imgs">
+        <img class="inst" src="./assets/imagenes/instagram.png" alt="">
+        <img class="face" src="./assets/imagenes/facebook.png" alt="">
+        <img class="what" src="./assets/imagenes/whatsapp.png" alt="">
+    </div>
+</footer>
 </body>
 </html>
 

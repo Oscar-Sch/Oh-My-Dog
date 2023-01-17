@@ -75,6 +75,18 @@
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
         <template v-else-if="articulosFiltrados">
+                <!--Barra de Busqueda-->
+        <form  class="search" role="search">
+            <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
+            <!-- Pendiente v-model @evento -->
+            <label>Ordenar Por:</label>
+                <select v-model="valorSelector" @change="OrdenarCartas()" id="ordenarPor" name="ordenarPor">
+                    <option value="a-z">Orden alfabetico: A - Z</option>
+                    <option value="z-a">Orden alfabetico: Z - A</option>
+                    <option value="men-may">Menor Precio</option>
+                    <option value="may-men">Mayor Precio</option>
+                </select>
+        </form>
             <div class="cards-container row">
                 <div class="card col-4"v-for="producto of articulosFiltrados">
                     <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
@@ -181,5 +193,18 @@
             </div>
         </div>
     </main>
+    <footer>
+        <div class="p">
+            <p>Teléfono:</p>
+        </div>
+        <div class="p">
+            <p>E-mail:</p>
+        </div>
+        <div class="imgs">
+            <img class="inst" src="./assets/imagenes/instagram.png" alt="">
+            <img class="face" src="./assets/imagenes/facebook.png" alt="">
+            <img class="what" src="./assets/imagenes/whatsapp.png" alt="">
+        </div>
+    </footer>
 </body>
 </html>

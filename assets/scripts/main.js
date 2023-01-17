@@ -11,7 +11,9 @@ createApp({
             listaCarrito:[],
             productoDetalles:null,
             totalCarrito:0,
-            envio:"",
+            envio:"retiro",
+            envioDatos:[],
+            pagoDatos:[],
             cuotas:"",
             metodoPago:"",
         }
@@ -25,10 +27,10 @@ createApp({
             if(localStorage.getItem("Carrito")){
                 this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
                 this.articulosFiltrados= this.ActualizarEstadoCarrito();
-                console.log(this.articulosFiltrados)
+                // console.log(this.articulosFiltrados)
             }
             this.productoDetalles=this.articulos[0];
-            console.log(this.listaCarrito)
+            // console.log(this.listaCarrito)
         })
         // .catch(err=> this.errorCarga=true);
     },
@@ -82,6 +84,21 @@ createApp({
             this.articulosFiltrados=this.ActualizarEstadoCarrito();
             console.log(JSON.parse(localStorage.getItem("Carrito")))
         },
+        ManejarBotonRealizarPago(){
+            return (this.envio==="retiro"|| 
+            (this.envioDatos.length===6 && !this.envioDatos.some(elem=>elem===null || elem==="")))
+        },
+        ManejarBotonPagar(){
+            if(this.pagoDatos.length===4 && !this.pagoDatos.some(elem=>elem===null || elem==="")){
+                if (this.metodoPago==="debito"){
+                    return true;
+                }
+                if(this.cuotas){
+                    return true;
+                }
+            }
+            return false;
+        },
         ManejarDetalles(prod){
             this.productoDetalles=prod;
             console.log(this.productoDetalles)
@@ -108,14 +125,15 @@ createApp({
         OrdenarCartas(){
             if(this.valorSelector==="a-z"){
                 this.articulosFiltrados.sort((a,b)=>{
-                    if (a.pruducto>b.producto){
-                        return 1;
-                    }
-                    if (a.producto<b.producto){
+                    if (a.pruducto<b.producto){
                         return -1;
+                    }
+                    if (a.producto>b.producto){
+                        return 1;
                     }
                     return 0;
                 })
+                console.log(this.articulosFiltrados)
             }
             if(this.valorSelector==="z-a"){
                 this.articulosFiltrados.sort((a,b)=>{

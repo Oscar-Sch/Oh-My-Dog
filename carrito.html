@@ -56,7 +56,7 @@
     </template>
     <template v-else-if="listaCarrito.length>0">
         <div class="cart-container d-flex">
-            <div class="cards-container row">
+            <div class="cards-container row justify-content-around">
                 <div class="card col-5"v-for="producto of listaCarrito">
                     <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
                     <div class="card-body">
@@ -132,54 +132,63 @@
                         </table>
                     </div>
                 </div>
-                <div class="checkout-shipping">
-                    <label>
-                        <span>Envio a domicilio</span>
-                        <input v-model="envio" type="radio" name="envio" id="env-dom" value="domicilio">
-                        <p>Valor: $500</p>
-                    </label>
-                    <label>
+                <div class="checkout-shipping d-flex flex-column align-self-start gap-3 mt-3">
+                    <label class="checkout-radio">
                         <span>Retiro en el local</span>
                         <input v-model="envio" checked type="radio" name="envio" id="env-ret" value="retiro">
                     </label>
+                    <label class="d-flex justify-content-between">
+                        <div class="checkout-radio">
+                        <span>Envio a domicilio</span>
+                        <input v-model="envio" type="radio" name="envio" id="env-dom" value="domicilio">
+                        </div>
+                        <span>Valor: $500</span>
+                    </label>
                     <template v-if="envio==='domicilio'">
-                        <div class="checkout-shipping-subsec">
+                        <div class="checkout-shipping-subsec d-flex justify-content-between">
                             <label>
                                 <p>Nombres</p>
-                                <input type="text" name="nombre">
+                                <input v-model="envioDatos[0]" type="text" name="nombre">
                             </label>
                             <label>
                                 <p>Apellidos</p>
-                                <input type="text" name="apellidos">
+                                <input v-model="envioDatos[1]" type="text" name="apellidos">
                             </label>
                         </div>
-                        <div class="checkout-shipping-subsec">
+                        <div class="checkout-shipping-subsec d-flex justify-content-between">
                             <label>
                                 <p>Direccion</p>
-                                <input type="text" name="direccion">
+                                <input v-model="envioDatos[2]" type="text" name="direccion">
                             </label>
                             <label>
                                 <p>Codigo postal</p>
-                                <input type="text" name="codigoPostal">
+                                <input v-model="envioDatos[3]" type="text" name="codigoPostal">
                             </label>
                         </div>
-                        <div class="checkout-shipping-subsec">
+                        <div class="checkout-shipping-subsec d-flex justify-content-between">
                             <label>
                                 <p>Telefono</p>
-                                <input type="tel" name="telefono">
+                                <input v-model="envioDatos[4]" type="tel" name="telefono">
                             </label>
                             <label>
                                 <p>E-mail</p>
-                                <input type="email" name="e-mail">
+                                <input v-model="envioDatos[5]" type="email" name="e-mail">
                             </label>
                         </div>
                     </template>
                 </div>
-                <div>
-                    <h3>Total a pagar: {{envio==="domicilio"?totalCarrito+500:totalCarrito}}</h3>
-                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalPagar">
-                        Realizar el pago
-                    </button>
+                <div class="d-flex flex-column align-items-center m-3 gap-3">
+                    <h3>Total a pagar: ${{envio==="domicilio"?totalCarrito+500:totalCarrito}}</h3>
+                    <template v-if="ManejarBotonRealizarPago()">
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalPagar">
+                            Realizar el pago
+                        </button>
+                    </template>
+                    <template v-else>
+                        <button disabled type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalPagar">
+                            Realizar el pago
+                        </button>
+                    </template>
                 </div>
             </div>
         </div>
@@ -198,52 +207,60 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label>
-                            <span>Metodo de pago</span>
-                            <select v-model="metodoPago"name="metodo-pago">
-                                <option value="debito">Tarjeta de Debito</option>
-                                <option value="credito">Tarjeta de Credito</option>
-                            </select>
-                        </label>
-                        <label>
-                            <span>Numero de Tarjeta</span>
-                            <input type="text" name="tarjeta">
-                        </label>
-                        <label>
-                            <span>Vencimiento</span>
-                            <input type="text" name="vencimiento" maxlength="5">
-                        </label>
-                        <label>
-                            <span>Clave de Seguridad</span>
-                            <input type="password" name="claveSeguridad" maxlength="4">
-                        </label>
-                        <label>
-                            <span>DNI</span>
-                            <input type="text" name="claveSeguridad" maxlength="8">
-                        </label>
-                        <template v-if="metodoPago==='credito'">
-                            <label>
-                                <span>Cuotas</span>
-                                <select v-model="cuotas" name="cuotas">
-                                    <option value="1">1 Pago 0%CFT</option>
-                                    <option value="3">3 Cuotas 130%CFT</option>
-                                    <option value="6">6 Cuotas 200%CFT</option>
-                                    <option value="12">12 Cuotas 250%CFT</option>
+                        <form action="..." method="get" class="d-flex flex-column align-items-center">
+                            <label class="checkout-modal-field">
+                                <span>Metodo de pago</span>
+                                <select v-model="metodoPago"name="metodo-pago">
+                                    <option value="debito">Tarjeta de Debito</option>
+                                    <option value="credito">Tarjeta de Credito</option>
                                 </select>
                             </label>
-                        </template>
-                        <h3>Total a pagar: ${{ManejarPago()}}</h3>
-                        <template v-if="cuotas && cuotas>'1'">
-                            <h4>En {{cuotas}} cuotas de: ${{(ManejarPago()/cuotas).toFixed("2")}}</h4>
-                        </template>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Pagar</button>
-                    </div>
+                            <label class="checkout-modal-field">
+                                <span>Numero de Tarjeta</span>
+                                <input v-model="pagoDatos[0]"type="text" name="tarjeta">
+                            </label>
+                            <label class="checkout-modal-field">
+                                <span>Vencimiento</span>
+                                <input v-model="pagoDatos[1]"type="text" name="vencimiento" maxlength="5">
+                            </label>
+                            <label class="checkout-modal-field">
+                                <span>Clave de Seguridad</span>
+                                <input v-model="pagoDatos[2]"type="password" name="claveSeguridad" maxlength="4">
+                            </label>
+                            <label class="checkout-modal-field">
+                                <span>DNI</span>
+                                <input v-model="pagoDatos[3]"type="text" name="claveSeguridad" maxlength="8">
+                            </label>
+                            <template v-if="metodoPago==='credito'">
+                                <label class="checkout-modal-field">
+                                    <span>Cuotas</span>
+                                    <select v-model="cuotas" name="cuotas">
+                                        <option value="1">1 Pago 0%CFT</option>
+                                        <option value="3">3 Cuotas 130%CFT</option>
+                                        <option value="6">6 Cuotas 200%CFT</option>
+                                        <option value="12">12 Cuotas 250%CFT</option>
+                                    </select>
+                                </label>
+                            </template>
+                            <h3>Total a pagar: ${{ManejarPago()}}</h3>
+                            <template v-if="cuotas && cuotas>'1'">
+                                <h4>En {{cuotas}} cuotas de: ${{(ManejarPago()/cuotas).toFixed("2")}}</h4>
+                            </template>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <template v-if="ManejarBotonPagar()">
+                                    <button type="button" class="btn btn-primary">Pagar</button>
+                                </template>
+                                <template v-else>
+                                    <button disabled type="button" class="btn btn-primary">Pagar</button>
+                                </template>
+                            </div>
+                        </form>    
+                    </div>  
                 </div>
             </div>
         </div>
+
         <div v-if="productoDetalles" class="modal fade" id="modalTarjetas" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
@@ -299,7 +316,19 @@
             </div>
         </div>
 </main>
-    
+<footer>
+    <div class="p">
+        <p>Teléfono:</p>
+    </div>
+    <div class="p">
+        <p>E-mail:</p>
+    </div>
+    <div class="imgs">
+        <img class="inst" src="./assets/imagenes/instagram.png" alt="">
+        <img class="face" src="./assets/imagenes/facebook.png" alt="">
+        <img class="what" src="./assets/imagenes/whatsapp.png" alt="">
+    </div>
+</footer>   
 </body>
 </html>
 
