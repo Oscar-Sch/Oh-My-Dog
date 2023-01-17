@@ -3,10 +3,11 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+            objeto:null,
             articulos:null,
             articulosFiltrados:null,
-            // articulosFarmacia:null,
-            // articulosJugueteria:null,
+            articulosFarmacia:null,
+            articulosJugueteria:null,
             errorCarga:false,
             valorBusqueda:"",
             valorSelector:"",
@@ -22,8 +23,13 @@ createApp({
         fetch("https://mindhub-xj03.onrender.com/api/petshop")
         .then(res=> res.json())
         .then(res=>{
+            this.objeto = res
             this.articulos=this.DetectarPagina(res);
             this.articulosFiltrados=this.articulos;
+            this.articulosFarmacia = this.organizarStock(this.objeto.filter(x => x.categoria == "farmacia"))
+            this.articulosJugueteria = this.organizarStock(this.objeto.filter(x => x.categoria == "jugueteria"))
+            console.log(this.articulosFarmacia)
+            console.log(this.articulosJugueteria)
             if(localStorage.getItem("Carrito")){
                 this.listaCarrito= JSON.parse(localStorage.getItem("Carrito"));
                 this.articulosFiltrados= this.ActualizarEstadoCarrito();
@@ -31,10 +37,14 @@ createApp({
             }
             this.productoDetalles=this.articulos[0];
             console.log(this.listaCarrito)
+
         })
         // .catch(err=> this.errorCarga=true);
     },
     methods:{
+        organizarStock(array){
+            return array.sort((a,b) => b.disponible - a.disponible)
+        },
         DetectarPagina(datos){
             const titulo= document.querySelector("h1").innerText;
             if (titulo==="Farmacia"){
