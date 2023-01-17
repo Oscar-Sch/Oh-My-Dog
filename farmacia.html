@@ -1,99 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/imagenes/logo_oh_my_dogs.jpg" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="shortcut icon" href="./assets/imagenes/favicon-removebg-preview.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <!-- <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
     <script defer src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script defer src="./assets/scripts/main.js"></script>
     <title>Oh my Dog! | Farmacia</title>
 </head>
+
 <body>
-<header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <div class="container justify-content-between">
-            <a class="navbar-brand" href="./index.html">
-                <img class="logo" src="./assets/imagenes/logo_oh_my_dogs.jpg" alt="">
-            </a>
-            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse link-group" id="collapsibleNavId">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="./index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./#">Farmacia</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"  href="./jugueteria.html">Jugueteria</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./contacto.html">Contacto</a>
-                    </li>  
-                </ul>   
-            </div>
-            <!-- <div class="carrito">
-                <a class="nav-link" href="./carrito.html">Carrito</a>
-            </div> -->
-        </div>
-    </nav>
-</header>
-    <main id="app">
-        <h1>Farmacia</h1>
-        <div class="container" v-show="articulosFiltrados">
-            <div class="row col-sm-12" >
-                <div id="carouselExampleSlidesOnly" class="carousel slide carousel-tamaño" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="./assets/imagenes/aviso.jpg" class="d-block w-100" alt="aviso de comida de perro">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/descuento.png" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/envios.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/local.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
+    <header>
+        <nav class="navbar navbar-expand-md nav_col">
+            <div class="container justify-content-between">
+                <div>
+                    <a class="navbar-brand" href="./index.html">
+                        <img class="logo" src="./assets/imagenes/logopetshop-removebg-preview.png" alt="logo">
+                    </a>
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse link-group" id="collapsibleNavId">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link b-letranav" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active b-letranav" aria-current="page" href="./#">Farmacia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link b-letranav" href="./jugueteria.html">Jugueteria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link b-letranav" href="./contacto.html">Contacto</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    
+        </nav>
+    </header>
+    <main id="app">
+        <h1>Farmacia</h1>
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="./assets/imagenes/dog1.jpg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/imagenes/dog2.jpg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/imagenes/dog4.jpg" class="d-block" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="./assets/imagenes/perritovet.jpg" class="d-block" alt="...">
+              </div>
+              
+            </div>
+          </div>
+
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
+
         <template v-else-if="articulosFiltrados">
-            <div class="cards-container row">
-                <div class="card col-4"v-for="producto of articulosFiltrados">
-                    <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
+
+            <div class="cards-container row d-flex justify-content-around">
+                <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of articulosFiltrados">
+                    <div class="img_container">   
+                        <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{producto.producto}}</h5>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">${{producto.precio}}</small>
+                        <p class="text-muted">Precio: ${{producto.precio}}</p>
                         <template v-if="producto.disponibles===0 ||
                         (producto.disponibles-producto.enCarrito)<=0">
-                            <p>Sin Stock!</p>
+                            <p class="stock">Sin Stock!</p>
                         </template>
                         <template v-else>
-                            <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
+                            <p class="card-text">
+                               Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
                         </template>
                         <div class="card-buttons-container">
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalId" @click="ManejarDetalles(producto)">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#modalId" @click="ManejarDetalles(producto)">
                                 Ver mas
                             </button>
                             <template v-if="producto.disponibles===0">
-                                <button disabled class="btn btn-primary">
-                                    Compar
+                                <button disabled class="btn btn-danger">
+                                    s/Stock
                                 </button>
                             </template>
                             <template v-else-if="producto.enCarrito>0">
@@ -107,8 +114,7 @@
                                 </template>
                             </template>
                             <template v-else>
-                                <button @click="AgregarAlCarrito(producto)"
-                                class="btn btn-primary">
+                                <button @click="AgregarAlCarrito(producto)" class="btn b-rojo">
                                     Comprar
                                 </button>
                             </template>
@@ -122,17 +128,19 @@
         </template>
 
         <!-- ---------------------------MODAL----------------------- -->
-        
-        <div v-if="productoDetalles" class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+
+        <div v-if="productoDetalles" class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static"
+            data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-between">
                         <h4 class="modal-title" id="modalTitleId">{{productoDetalles.producto}}</h4>
-                            <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"></button>
-                            
+                        <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
-                        <img :src="productoDetalles.imagen" alt="imagen">
+                        <img :src="productoDetalles.imagen" class="modal_img" alt="imagen">
                         <h6>{{productoDetalles.categoria}}</h6>
                         <p>{{productoDetalles.descripcion}}</p>
                         <!-- <p>{{productoDetalles.precio}}</p>
@@ -140,20 +148,22 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <div class="d-flex gap-2 align-items-center">
-                            <span class="card-text">${{productoDetalles.precio}}</span>
+                            <span class="card-text">Precio: ${{productoDetalles.precio}}</span>
                             <template v-if="productoDetalles.disponibles===0 ||
                             (productoDetalles.disponibles-productoDetalles.enCarrito)<=0">
                                 <span>Sin Stock!</span>
                             </template>
                             <template v-else>
                                 <span>Disponibles: </span>
-                                <p class="card-text">{{productoDetalles.enCarrito?productoDetalles.disponibles-productoDetalles.enCarrito:productoDetalles.disponibles}}</p>
+                                <p class="card-text">
+                                    {{productoDetalles.enCarrito?productoDetalles.disponibles-productoDetalles.enCarrito:productoDetalles.disponibles}}
+                                </p>
                             </template>
                         </div>
                         <div class="card-buttons-container">
                             <template v-if="productoDetalles.disponibles===0">
-                                <button disabled class="btn btn-primary">
-                                    Compar
+                                <button disabled class="btn btn-danger">
+                                    s/Stock
                                 </button>
                             </template>
                             <template v-else-if="productoDetalles.enCarrito>0">
@@ -167,8 +177,7 @@
                                 </template>
                             </template>
                             <template v-else>
-                                <button @click="AgregarAlCarrito(productoDetalles)"
-                                class="btn btn-primary">
+                                <button @click="AgregarAlCarrito(productoDetalles)" class="btn b-rojo">
                                     Comprar
                                 </button>
                             </template>
@@ -178,6 +187,9 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
