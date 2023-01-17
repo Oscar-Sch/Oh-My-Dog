@@ -13,3 +13,13 @@ Tambien se encontrara una seccion con un menu intearactivo en el se vera informa
 * Vue JS.
 * BootStrap
 
+***APIs Utilizadas***
+* Fetch 
+
+***Developers***
+* Ricardo Sanchez https://github.com/RicardoSanchezOrtiz
+* Oscar Schwerdt https://github.com/Oscar-Sch
+* Tomás Pérez https://github.com/tomaspmind
+* Daniel López https://github.com/dlopez1591
+* Joaquin Fleitas 
+* Mailen Alvarez 
