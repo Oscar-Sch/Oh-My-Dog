@@ -59,28 +59,34 @@
     </template>
     <template v-else-if="listaCarrito.length>0">
         <div class="cart-container d-flex">
-            <div class="cards-container row justify-content-around">
-                <div class="card col-5"v-for="producto of listaCarrito">
-                    <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
+            <div class="cards-container row d-flex justify-content-around">
+                <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of listaCarrito">
+                    <div class="img_container">   
+                        <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{producto.producto}}</h5>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">${{producto.precio}}</small>
-                        <template v-if="producto.disponibles===0 ||
-                        (producto.disponibles-producto.enCarrito)<=0">
-                            <p>Sin Stock!</p>
-                        </template>
-                        <template v-else>
-                            <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
-                        </template>
-                        <div class="card-buttons-container">
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalTarjetas" @click="ManejarDetalles(producto)">
+                        <div class="d-flex justify-content-around">
+                            <span class="text-muted">Precio: ${{producto.precio}}</span>
+                            <template v-if="producto.disponibles===0 ||
+                            (producto.disponibles-producto.enCarrito)<=0">
+                                <span class="stock">Sin Stock!</span>
+                            </template>
+                            <template v-else>
+                                <span class="card-text">
+                                Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
+                            </template>
+                        </div>
+                        <div class="card-buttons-container d-flex justify-content-around">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#modalId" @click="ManejarDetalles(producto)">
                                 Ver mas
                             </button>
                             <template v-if="producto.disponibles===0">
-                                <button disabled class="btn btn-primary">
-                                    Compar
+                                <button disabled class="btn btn-danger">
+                                    s/Stock
                                 </button>
                             </template>
                             <template v-else-if="producto.enCarrito>0">
@@ -94,8 +100,7 @@
                                 </template>
                             </template>
                             <template v-else>
-                                <button @click="AgregarAlCarrito(producto)"
-                                class="btn btn-primary">
+                                <button @click="AgregarAlCarrito(producto)" class="btn b-rojo">
                                     Comprar
                                 </button>
                             </template>

@@ -54,7 +54,7 @@
 </header>
     <main>
         <h1>Farmacia</h1>
-        <div class="container" v-show="articulosFiltrados">
+        <div class="container d-flex justify-content-center align-items-center carousel-container" v-show="articulosFiltrados">
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -89,7 +89,7 @@
                     <option value="may-men">Mayor Precio</option>
                 </select>
         </form>
-        <div class="cards-container row d-flex justify-content-around">
+        <div class="cards-container row d-flex justify-content-around gap-3">
             <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of articulosFiltrados">
                 <div class="img_container">   
                     <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
