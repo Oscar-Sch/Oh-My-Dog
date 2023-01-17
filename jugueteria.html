@@ -15,10 +15,10 @@
 </head>
 <body id="app">
 <header>
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <nav class="navbar navbar-expand-md nav_col">
         <div class="container justify-content-between">
             <a class="navbar-brand" href="./index.html">
-                <img class="logo" src="./assets/imagenes/logo_oh_my_dogs.jpg" alt="">
+                <img class="logo" src="./assets/imagenes/logopetshop-removebg-preview.png" alt="logo">
             </a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -55,30 +55,29 @@
     <main>
         <h1>Jugueteria</h1>
         <div class="container" v-show="articulosFiltrados">
-            <div class="row col-sm-12" >
-                <div id="carouselExampleSlidesOnly" class="carousel slide carousel-tamaño" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="./assets/imagenes/aviso.jpg" class="d-block w-100" alt="aviso de comida de perro">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/descuento.png" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/envios.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./assets/imagenes/local.jpg" class="d-block w-100" alt="...">
-                        </div>
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="./assets/imagenes/dog1.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/imagenes/dog2.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/imagenes/dog4.jpg" class="d-block" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="./assets/imagenes/perritovet.jpg" class="d-block" alt="...">
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+
         <template v-if="!articulosFiltrados">
             <img src="./assets/imagenes/loader.gif" alt="">
         </template>
         <template v-else-if="articulosFiltrados">
-                <!--Barra de Busqueda-->
+            <!--Barra de Busqueda-->
         <form  class="search" role="search">
             <input v-model="valorBusqueda" @keyup="FiltrarBusqueda()" class="form-control me-2" type="search" placeholder="Busca tu Producto" aria-label="Search"> 
             <!-- Pendiente v-model @evento -->
@@ -90,55 +89,60 @@
                     <option value="may-men">Mayor Precio</option>
                 </select>
         </form>
-            <div class="cards-container row">
-                <div class="card col-4"v-for="producto of articulosFiltrados">
+        <div class="cards-container row d-flex justify-content-around">
+            <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of articulosFiltrados">
+                <div class="img_container">   
                     <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
-                    <div class="card-body">
-                        <h5 class="card-title">{{producto.producto}}</h5>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">${{producto.precio}}</small>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{producto.producto}}</h5>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-around">
+                        <span class="text-muted">Precio: ${{producto.precio}}</span>
                         <template v-if="producto.disponibles===0 ||
                         (producto.disponibles-producto.enCarrito)<=0">
-                            <p>Sin Stock!</p>
+                            <span class="stock">Sin Stock!</span>
                         </template>
                         <template v-else>
-                            <p class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</p>
+                            <span class="card-text">
+                            Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
                         </template>
-                        <div class="card-buttons-container">
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalId" @click="ManejarDetalles(producto)">
-                                Ver mas
+                    </div>
+                    <div class="card-buttons-container d-flex justify-content-around">
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#modalId" @click="ManejarDetalles(producto)">
+                            Ver mas
+                        </button>
+                        <template v-if="producto.disponibles===0">
+                            <button disabled class="btn btn-danger">
+                                s/Stock
                             </button>
-                            <template v-if="producto.disponibles===0">
-                                <button disabled class="btn btn-primary">
-                                    Compar
-                                </button>
-                            </template>
-                            <template v-else-if="producto.enCarrito>0">
-                                <button @click="RestarAlCarrito(producto)">-</button>
-                                <span>{{producto.enCarrito}}</span>
-                                <template v-if="producto.disponibles>producto.enCarrito">
-                                    <button @click="AgregarAlCarrito(producto)">+</button>
-                                </template>
-                                <template v-else>
-                                    <button disabled>+</button>
-                                </template>
+                        </template>
+                        <template v-else-if="producto.enCarrito>0">
+                            <button @click="RestarAlCarrito(producto)">-</button>
+                            <span>{{producto.enCarrito}}</span>
+                            <template v-if="producto.disponibles>producto.enCarrito">
+                                <button @click="AgregarAlCarrito(producto)">+</button>
                             </template>
                             <template v-else>
-                                <button @click="AgregarAlCarrito(producto)"
-                                class="btn btn-primary">
-                                    Comprar
-                                </button>
+                                <button disabled>+</button>
                             </template>
-                        </div>
+                        </template>
+                        <template v-else>
+                            <button @click="AgregarAlCarrito(producto)" class="btn b-rojo">
+                                Comprar
+                            </button>
+                        </template>
                     </div>
                 </div>
             </div>
+        </div>
         </template>
         <template v-else>
             <h2>No se encontraron resultados</h2>
         </template>
-        
+
         <!-- ---------------------------MODAL----------------------- -->
         
         <div v-if="productoDetalles" class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -146,11 +150,12 @@
                 <div class="modal-content">
                     <div class="modal-header d-flex justify-content-between">
                         <h4 class="modal-title" id="modalTitleId">{{productoDetalles.producto}}</h4>
-                            <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"></button>
-                            
+                        <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
-                        <img :src="productoDetalles.imagen" alt="imagen">
+                        <img :src="productoDetalles.imagen" class="modal_img" alt="imagen">
                         <h6>{{productoDetalles.categoria}}</h6>
                         <p>{{productoDetalles.descripcion}}</p>
                         <!-- <p>{{productoDetalles.precio}}</p>
@@ -158,20 +163,22 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
                         <div class="d-flex gap-2 align-items-center">
-                            <span class="card-text">${{productoDetalles.precio}}</span>
+                            <span class="card-text">Precio: ${{productoDetalles.precio}}</span>
                             <template v-if="productoDetalles.disponibles===0 ||
                             (productoDetalles.disponibles-productoDetalles.enCarrito)<=0">
                                 <span>Sin Stock!</span>
                             </template>
                             <template v-else>
                                 <span>Disponibles: </span>
-                                <p class="card-text">{{productoDetalles.enCarrito?productoDetalles.disponibles-productoDetalles.enCarrito:productoDetalles.disponibles}}</p>
+                                <p class="card-text">
+                                    {{productoDetalles.enCarrito?productoDetalles.disponibles-productoDetalles.enCarrito:productoDetalles.disponibles}}
+                                </p>
                             </template>
                         </div>
                         <div class="card-buttons-container">
                             <template v-if="productoDetalles.disponibles===0">
-                                <button disabled class="btn btn-primary">
-                                    Compar
+                                <button disabled class="btn btn-danger">
+                                    s/Stock
                                 </button>
                             </template>
                             <template v-else-if="productoDetalles.enCarrito>0">
@@ -185,8 +192,7 @@
                                 </template>
                             </template>
                             <template v-else>
-                                <button @click="AgregarAlCarrito(productoDetalles)"
-                                class="btn btn-primary">
+                                <button @click="AgregarAlCarrito(productoDetalles)" class="btn b-rojo">
                                     Comprar
                                 </button>
                             </template>
