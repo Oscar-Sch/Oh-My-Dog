@@ -863,11 +863,12 @@ thead{
         display: flex;
         flex-direction: column !important;
         align-items: center !important;
+        gap: 2rem;
     }
     .cuidados p{
         width: 100%;
     }
     .tamaño{
-        width: 60%;
+        width: 80%;
     }
 }
