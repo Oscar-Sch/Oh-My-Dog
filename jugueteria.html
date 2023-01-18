@@ -104,19 +104,19 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex flex-column justify-content-around gap-1 mb-2">
-                            <div class="d-flex justify-content-between">
-                                <span class="text-muted">Precio:</span>
-                                <span class="text-muted">${{producto.precio}}</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-around stock_price">
+                                <span class="text-muted">Precio: ${{producto.precio}}</span>
                                 <template v-if="producto.disponibles===0 ||
                                 (producto.disponibles-producto.enCarrito)<=0">
-                                    <span class="stock justify-self-center">¡Sin Stock!</span>
+                                    <span class="card-text stock stock-warning">Sin Stock!</span>
+                                </template>
+                                <template v-else-if="(producto.disponibles<5 || (producto.disponibles-producto.enCarrito)<5)">
+                                    <span class="card-text stock-warning">
+                                    Ultimas unidades: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
                                 </template>
                                 <template v-else>
                                     <span class="card-text">
-                                    Stock disponible:</span>
-                                    <span class="card-text">{{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
+                                    Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
                                 </template>
                             </div>
                         </div>

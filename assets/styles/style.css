@@ -119,8 +119,9 @@ nav {
     --amarillo:#f4e3b4;
 }
 body{
-    background:linear-gradient(150deg, var(--rosa) 10%,var(--naranja) 90%);
-    
+    background-image:linear-gradient(150deg, #e3947cc1 10%,#f48c4cc1 90%),url(../imagenes/back-2.png);
+    background-size: 100vw;
+
 }
 #carouselExampleControls{
     margin: 4rem 0;
@@ -303,6 +304,7 @@ nav {
     background: url(../imagenes/back.png);
     background-size: 15em;
     border: 2px solid var(--marron);
+    max-height: 23rem;
 }
 .img_container{
     background-color: white;
@@ -333,10 +335,18 @@ nav {
     background-color: #FFEBB7;
     border-top: 2px solid var(--rosa);
 }
+.card-text{
+    padding: .2em .3em;
+}
 .stock_price{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+.stock-warning{
+    border: 2px solid red;
+    border-radius: .2em;
+    background-color: rgba(255, 0, 0, 0.46);
 }
 
 /* .card-text{
@@ -460,18 +470,42 @@ ul{
     gap: 1em;
 }
 .cart-container .cards-container{
-    width: 60%;
+    width: 90%;
+    height: 25em;
+    /* flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    justify-content: left;
+    align-content: flex-start;
+    align-items: center;
+    overflow: hidden; */
+    /* padding-left: 50rem; */
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    gap: 1rem;
 }
+/* .checkout-overflow-container{
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    gap: 1rem;
+} */
 .checkout{
     padding: 0 1em;
-    width: 1fr;
-    border-left: 2px solid black;
+    width: 100%;
 }
-
+.checkout table{
+    background-color: #fff8;
+}
 .checkout table *{
-    padding: 0 1em;
+    /* padding: 0 1em; */
     border: 1px solid black;
     border-collapse: collapse;
+}
+thead{
+    background-color: var(--verde);
 }
 .checkout-radio{
     width: 10em;
@@ -520,6 +554,30 @@ ul{
     }
     .searchbar{
         width: 20rem;
+    }
+    .cart-container{
+        flex-direction: row !important;
+        width:100%;
+        border-collapse: collapse;
+    }
+    .cart-container .cards-container{
+        width: 1fr;
+        overflow: visible;
+        flex-wrap: wrap;
+        height: 100%;
+        justify-content: space-around;
+        padding-bottom: 3em;
+        border-right: 3px groove var(--marron);
+    }
+    .checkout{
+        align-self: flex-start;
+        width: 1fr;
+    }
+    .checkout table *{
+        padding: .3em 1em;
+    }
+    .checkout-modal-field{
+        flex-direction: row !important;
     }
 }
 @media (max-width:576px) {

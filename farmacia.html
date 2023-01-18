@@ -109,7 +109,11 @@
                                 <span class="text-muted">Precio: ${{producto.precio}}</span>
                                 <template v-if="producto.disponibles===0 ||
                                 (producto.disponibles-producto.enCarrito)<=0">
-                                    <span class="stock">Sin Stock!</span>
+                                    <span class="card-text stock stock-warning">Sin Stock!</span>
+                                </template>
+                                <template v-else-if="(producto.disponibles<5 || (producto.disponibles-producto.enCarrito)<5)">
+                                    <span class="card-text stock-warning">
+                                    Ultimas unidades: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
                                 </template>
                                 <template v-else>
                                     <span class="card-text">

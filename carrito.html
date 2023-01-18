@@ -58,9 +58,9 @@
         <img src="./assets/imagenes/loader.gif" alt="">
     </template>
     <template v-else-if="listaCarrito.length>0">
-        <div class="cart-container d-flex">
-            <div class="cards-container row d-flex justify-content-around">
-                <div class="card col-10 col-md-5 col-lg-3 m-1" v-for="producto of listaCarrito">
+        <div class="cart-container d-flex flex-column align-items-center">
+            <div class="cards-container">
+                <div class="card" v-for="producto of listaCarrito">
                     <div class="img_container">   
                         <img :src="producto.imagen" class="card-img-top" :alt="producto.producto">
                     </div>
@@ -68,16 +68,22 @@
                         <h5 class="card-title">{{producto.producto}}</h5>
                     </div>
                     <div class="card-footer">
-                        <div class="d-flex justify-content-around">
-                            <span class="text-muted">Precio: ${{producto.precio}}</span>
-                            <template v-if="producto.disponibles===0 ||
-                            (producto.disponibles-producto.enCarrito)<=0">
-                                <span class="stock">Sin Stock!</span>
-                            </template>
-                            <template v-else>
-                                <span class="card-text">
-                                Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
-                            </template>
+                        <div class="d-flex flex-column justify-content-around gap-1 mb-2">
+                            <div class="d-flex justify-content-around stock_price">
+                                <span class="text-muted">Precio: ${{producto.precio}}</span>
+                                <template v-if="producto.disponibles===0 ||
+                                (producto.disponibles-producto.enCarrito)<=0">
+                                    <span class="card-text stock stock-warning">Sin Stock!</span>
+                                </template>
+                                <template v-else-if="(producto.disponibles<5 || (producto.disponibles-producto.enCarrito)<5)">
+                                    <span class="card-text stock-warning">
+                                    Ultimas unidades: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
+                                </template>
+                                <template v-else>
+                                    <span class="card-text">
+                                    Stock disponible: {{producto.enCarrito?producto.disponibles-producto.enCarrito:producto.disponibles}}</span>
+                                </template>
+                            </div>
                         </div>
                         <div class="card-buttons-container d-flex justify-content-around">
                             <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
@@ -153,7 +159,7 @@
                         <span>Valor: $500</span>
                     </label>
                     <template v-if="envio==='domicilio'">
-                        <div class="checkout-shipping-subsec d-flex justify-content-between">
+                        <div class="checkout-shipping-subsec d-flex flex-column justify-content-between align-items-center">
                             <label>
                                 <p>Nombres</p>
                                 <input v-model="envioDatos[0]" type="text" name="nombre">
@@ -163,7 +169,7 @@
                                 <input v-model="envioDatos[1]" type="text" name="apellidos">
                             </label>
                         </div>
-                        <div class="checkout-shipping-subsec d-flex justify-content-between">
+                        <div class="checkout-shipping-subsec d-flex flex-column justify-content-between align-items-center">
                             <label>
                                 <p>Direccion</p>
                                 <input v-model="envioDatos[2]" type="text" name="direccion">
@@ -173,7 +179,7 @@
                                 <input v-model="envioDatos[3]" type="text" name="codigoPostal">
                             </label>
                         </div>
-                        <div class="checkout-shipping-subsec d-flex justify-content-between">
+                        <div class="checkout-shipping-subsec d-flex flex-column justify-content-between align-items-center">
                             <label>
                                 <p>Telefono</p>
                                 <input v-model="envioDatos[4]" type="tel" name="telefono">
@@ -215,32 +221,32 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="..." method="get" class="d-flex flex-column align-items-center form-checkout">
-                            <label class="checkout-modal-field">
+                        <form action="..." method="get" class="d-flex flex-column align-items-center form-checkout gap-3">
+                            <label class="checkout-modal-field d-flex flex-column">
                                 <span>Metodo de pago</span>
                                 <select v-model="metodoPago"name="metodo-pago">
                                     <option value="debito">Tarjeta de Debito</option>
                                     <option value="credito">Tarjeta de Credito</option>
                                 </select>
                             </label>
-                            <label class="checkout-modal-field">
+                            <label class="checkout-modal-field d-flex flex-column">
                                 <span>Numero de Tarjeta</span>
                                 <input v-model="pagoDatos[0]"type="text" name="tarjeta">
                             </label>
-                            <label class="checkout-modal-field">
+                            <label class="checkout-modal-field d-flex flex-column">
                                 <span>Vencimiento</span>
                                 <input v-model="pagoDatos[1]"type="text" name="vencimiento" maxlength="5">
                             </label>
-                            <label class="checkout-modal-field">
+                            <label class="checkout-modal-field d-flex flex-column">
                                 <span>Clave de Seguridad</span>
                                 <input v-model="pagoDatos[2]"type="password" name="claveSeguridad" maxlength="4">
                             </label>
-                            <label class="checkout-modal-field">
+                            <label class="checkout-modal-field d-flex flex-column">
                                 <span>DNI</span>
                                 <input v-model="pagoDatos[3]"type="text" name="claveSeguridad" maxlength="8">
                             </label>
                             <template v-if="metodoPago==='credito'">
-                                <label class="checkout-modal-field">
+                                <label class="checkout-modal-field d-flex flex-column">
                                     <span>Cuotas</span>
                                     <select v-model="cuotas" name="cuotas">
                                         <option value="1">1 Pago 0%CFT</option>
@@ -254,17 +260,17 @@
                             <template v-if="cuotas && cuotas>'1'">
                                 <h4>En {{cuotas}} cuotas de: ${{(ManejarPago()/cuotas).toFixed("2")}}</h4>
                             </template>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <template v-if="ManejarBotonPagar()">
-                                    <button type="button" class="btn btn-primary">Pagar</button>
-                                </template>
-                                <template v-else>
-                                    <button disabled type="button" class="btn btn-primary">Pagar</button>
-                                </template>
-                            </div>
                         </form>    
                     </div>  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <template v-if="ManejarBotonPagar()">
+                            <button type="button" class="btn btn-primary">Pagar</button>
+                        </template>
+                        <template v-else>
+                            <button disabled type="button" class="btn btn-primary">Pagar</button>
+                        </template>
+                    </div>
                 </div>
             </div>
         </div>
@@ -299,7 +305,7 @@
                         <div class="card-buttons-container">
                             <template v-if="productoDetalles.disponibles===0">
                                 <button disabled class="btn btn-primary">
-                                    Compar
+                                    Comprar
                                 </button>
                             </template>
                             <template v-else-if="productoDetalles.enCarrito>0">
