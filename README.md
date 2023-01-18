@@ -1,8 +1,7 @@
 # Oh My Dog :dog: `#0969DA`
 ![This is an image](https://i.ibb.co/tPPg80Y/logo-oh-my-dogs.jpg)
 
-**Oh My Dog** Es un proyecto que pretende emular una pet shop de una tienda veterinaria en la que se encontraran productos para mascotas, un carrito de compras completamente funcional que permite agregar los productos que se va a comprar, asi mismo se podra ver en detalle cada producto donde se encontrara descripcion, imagenes y cantidad del mismo en la tienda y se podran ordenar alfabeticamente o por su precio. 
-Tambien se encontrara una seccion con un menu intearactivo en el se vera informacion, tips y consejos sobre el cuidadado de una mascota.
+**Oh My Dog** Es un proyecto que pretende emular un petshop de una tienda veterinaria. En el sitio encontrarán productos para mascotas, tanto de farmacia como de juguetería, una seccion con un menu intearactivo en el se vera informacion, tips y consejos sobre el cuidadado de una mascota, un formulario de contacto y un carrito de compras completamente funcional que permite agregar los productos que se van a comprar. Así mismo se podra ver en detalle cada producto, con su descripción, imagenes y disponibilidad en la tienda. Los productos se pueden ordenar alfabeticamente o por su precio. 
 
 ***Tecnologias Usadas :computer:***
 * HTML5.
@@ -14,7 +13,7 @@ Tambien se encontrara una seccion con un menu intearactivo en el se vera informa
 * BootStrap
 
 ***APIs Utilizadas :triangular_ruler:***
-* Fetch 
+* Mindhub/Petshop
 
 ***Developers :construction:***
 * Ricardo Sanchez https://github.com/RicardoSanchezOrtiz
