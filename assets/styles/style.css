@@ -533,21 +533,31 @@ border: 1px solid #4c3c2c;
     }
 }
 
+@media (min-width: 425px){
+    .cuidados-container{
+        display: none;
 
-@media (max-width:576px) {
+    }
+}
+@media (max-width : 768px){
+    .cuidados-container{
+        display: none;
+
+    }
+}
+
+/* @media (max-width:576px) {
     .cuidados-container{
         flex-direction: column;
     }
     .nav-list{
         min-height: 10vh;
-        /* overflow-x: scroll; */
     }
     .list-group ul{
         display: flex;
         width: 100%;
     }
     .list-group ul>li{
-        /* display: flex; */
         width: 1fr;
         justify-self: start;
     }
@@ -561,4 +571,4 @@ border: 1px solid #4c3c2c;
     h1{
         font-size: 3rem;
     }
-}
+} */
