@@ -19,6 +19,7 @@ createApp({
             pagoDatos:[],
             cuotas:"",
             metodoPago:"",
+            contactoDatos:[]
         }
     },
     created(){
