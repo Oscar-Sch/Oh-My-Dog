@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/imagenes/logo_oh_my_dogs.jpg" type="image/x-icon">
-    <title>Oh My Dogs! | Contacto</title>
+    <link rel="shortcut icon" href="./assets/imagenes/logopetshop-removebg-preview.png" type="image/x-icon">
+    <title>Oh My Dog! | Contacto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
@@ -79,14 +79,14 @@
                     <label for="check" class="">¡Quiero suscribirme al Newsletter!</label>
                     <input id="check" v-model="contactoDatos[4]" type="checkbox" value="suscrito"></input>
                 </div>
-                <div class="contact-form">
-                    <template v-if="contactoDatos.length>=4 && !contactoDatos.some(elem=> elem==='')">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <div class="contact-form d-flex justify-content-end">
+                    <template v-if="contactoDatos.length>3 && !contactoDatos.some(elem=> elem==='')">
+                        <button type="button" class="btn b-rojo" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Enviar
                         </button>
                     </template>
                     <template v-else>
-                        <button disabled type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button disabled type="button" class="btn b-rojo" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                             Enviar
                         </button>
                     </template>

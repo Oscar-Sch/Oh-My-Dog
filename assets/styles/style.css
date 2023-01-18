@@ -318,6 +318,9 @@ nav {
 .modal-footer{
     background-color: #ffebb7 ;
 }
+.b-border{
+    border: 2px solid var(--marron);
+}
 
 .b-rojo{
     background-color: #FDA769;
@@ -364,9 +367,9 @@ nav {
     padding: 0;
     padding-top: 1rem;
     box-shadow: 8px 2px 20px grey;
-    max-width: 15rem;
-    min-width: 15rem;
-    width: 15rem;
+    max-width: 16rem;
+    min-width: 16rem;
+    width: 16rem;
     /* width: 15rem; */
     border-radius: 1rem;
     overflow: hidden;
@@ -491,7 +494,7 @@ footer h6{
     display: flex;
     border: 3px solid var(--marron);
     min-width: 15rem;
-    max-width: 22rem;
+    max-width: 25rem;
     width: 100%;
     display: flex;
     border-radius: 1rem;
@@ -501,6 +504,7 @@ footer h6{
     margin-bottom: 3rem;
     background-color: #0002;
     font-weight: bolder;
+    padding: 2rem;
 }
 .form-contact>div{
     width: 80%;
@@ -531,7 +535,7 @@ ul{
     position: absolute;
     top: 5vh;
     right: 50%;
-    translate: 50% 50%;
+    translate: 50% 0%;
 }
 .cart-container{
     width:100%;
@@ -579,6 +583,7 @@ thead{
     width: 10em;
     display: flex;
     justify-content: space-between;
+    font-weight: bolder;
 }
 .checkout-shipping{
     width: 100%;
@@ -623,11 +628,12 @@ thead{
     display: flex;
     justify-content: center;
     padding: 3rem;
+    width: 100%;
 
 }
-/* .cuidados p{
-    width: 2fr;
-} */
+.cuidados p{
+    width: 50%;
+}
 .cuid-tit{
     border-radius: 1rem;
     padding: 1.5rem;
@@ -641,9 +647,12 @@ thead{
 
 }
 .tamaño{
-    width: 650px;
-    height: 400px; 
+    width: 40%;
+    /* width: 650px;
+    height: 400px;  */
+    /* width: 50%; */
     border-radius: 1rem;
+    object-fit: contain;
 }
 
 
@@ -653,17 +662,11 @@ thead{
     border: none;
     color: #4c3c2c;
 }
-/* .cuidados{
-    display: flex;
-    width: 100%;
-}
-.cuidados img{
-    width: 40% !important;
-    height: auto;
-}
 .cuidados p{
-    width: 2fr;
-} */
+    align-self: stretch;
+    margin: 0 !important;
+} 
+
 .cuidado-b{
     background-color: #9cbca48a;
     max-height: 100vh;
@@ -674,6 +677,7 @@ thead{
     padding: .5rem;
     overflow-y: scroll;
 }
+
 
 .lista-animales{
     position: relative;
@@ -699,13 +703,71 @@ thead{
     flex-direction: column;
     gap: 3.5rem;
 }
+.thank-you-pop{
+	width:100%;
+ 	padding:20px;
+	text-align:center;
+}
+.thank-you-pop img{
+	width:76px;
+	height:auto;
+	margin:0 auto;
+	display:block;
+	margin-bottom:25px;
+}
+
+.thank-you-pop h1{
+	font-size: 42px;
+    margin-bottom: 25px;
+	color:#5C5C5C;
+}
+.thank-you-pop p{
+	font-size: 20px;
+    margin-bottom: 27px;
+ 	color:#5C5C5C;
+}
+.thank-you-pop h3.cupon-pop{
+	font-size: 25px;
+    margin-bottom: 40px;
+	color:#222;
+	display:inline-block;
+	text-align:center;
+	padding:10px 20px;
+	border:2px dashed #222;
+	clear:both;
+	font-weight:normal;
+}
+.thank-you-pop h3.cupon-pop span{
+	color:#03A9F4;
+}
+.thank-you-pop a{
+	display: inline-block;
+    margin: 0 auto;
+    padding: 9px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #8BC34A;
+    border-radius: 17px;
+}
+.thank-you-pop a i{
+	margin-right:5px;
+	color:#fff;
+}
+#ignismyModal .modal-header{
+    border:0px;
+}
+/*--thank you pop ends here--*/
+.checkout-shipping-subsec{
+    font-weight: bolder;
+}
 @media (min-width: 768px){
     .nav-list{
         min-width: 17em;
     }
     .carrito{
         right: 1rem;
-        translate: -25% 50%;
+        translate: -25% 0%;
     }
     .search{
         flex-direction: row;
@@ -743,8 +805,14 @@ thead{
     }
 }
 @media (max-width:576px) {
-    .cuidados-container{
+    /* .cuidados-container{
         flex-direction: column;
+    } */
+    .cuidado-b{
+        display: none;
+    }
+    .info-container{
+        width: 100% !important;
     }
     .nav-list{
         min-height: 10vh;
@@ -782,38 +850,24 @@ thead{
     .link_toys{
         flex-direction: column;
     }
-    .b-rojo{
+    /* .b-rojo{
         width: 50%;
-    }
+    } */
     .car-container{
         display: none;
     }
 }
-/* @media (min-width: 426px) and (max-width: 1023px) {
-    .title_home{
-        margin: 0;
-        text-align: start;
+
+@media (max-width:1024px){
+    .cuidados{
+        display: flex;
+        flex-direction: column !important;
+        align-items: center !important;
     }
-    .title_home h2{
-        font-size: 25px;
+    .cuidados p{
+        width: 100%;
+    }
+    .tamaño{
+        width: 60%;
     }
 }
-
-@media  (max-width: 767px){
-    .cardHome{
-        width: 90%;
-    }
-    .title_home{
-        display: none;
-    }
-    .title_img{
-        justify-content: center;
-        background-color: transparent;
-    }
-    .link_toys{
-        flex-direction: column;
-    }
-    .b-rojo{
-        width: 50%;
-    }
-} */
